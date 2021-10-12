@@ -1,0 +1,695 @@
+BEGIN HEADER
+   CharacterSet "ENGLISH"
+   ExportingTool "IBM InfoSphere DataStage Export"
+   ToolVersion "8"
+   ServerName "entechlog-dev"
+   ToolInstanceID "ENTECHLOG_DEV"
+   MDISVersion "1.0"
+   Date "2015-05-20"
+   Time "21.11.30"
+   ServerVersion "8.7"
+END HEADER
+BEGIN DSJOB
+   Identifier "ClearDS_RTLogRTStatus"
+   DateModified "2015-05-20"
+   TimeModified "19.38.50"
+   BEGIN DSRECORD
+      Identifier "ROOT"
+      OLEType "CJobDefn"
+      Readonly "0"
+      Name "ClearDS_RTLogRTStatus"
+      NextID "2"
+      Container "V0"
+      JobVersion "56.0.0"
+      ControlAfterSubr "0"
+      Parameters "CParameters"
+      BEGIN DSSUBRECORD
+         Name "ThisJob"
+         Prompt "ThisJob"
+         Default "ClearDS_RTLogRTStatus"
+         ParamType "0"
+         ParamLength "0"
+         ParamScale "0"
+      END DSSUBRECORD
+      BEGIN DSSUBRECORD
+         Name "APPLDIR"
+         Prompt "APPLDIR"
+         Default "/opt/datastage/files/dev/warehouse/"
+         ParamType "0"
+         ParamLength "0"
+         ParamScale "0"
+      END DSSUBRECORD
+      MetaBag "CMetaProperty"
+      BEGIN DSSUBRECORD
+         Owner "APT"
+         Name "AdvancedRuntimeOptions"
+         Value "#DSProjectARTOptions#"
+      END DSSUBRECORD
+      NULLIndicatorPosition "0"
+      IsTemplate "0"
+      NLSLocale ",,,,"
+      JobType "0"
+      Category "\\Jobs\\WAREHOUSE/Utilities\\AUDIT_DATASTAGE_JOB_ID"
+      CenturyBreakYear "30"
+      NextAliasID "2"
+      ParameterFileDDName "DD00001"
+      ReservedWordCheck "1"
+      TransactionSize "0"
+      ValidationStatus "0"
+      Uploadable "0"
+      PgmCustomizationFlag "0"
+      JobReportFlag "0"
+      AllowMultipleInvocations "0"
+      Act2ActOverideDefaults "0"
+      Act2ActEnableRowBuffer "0"
+      Act2ActUseIPC "0"
+      Act2ActBufferSize "0"
+      Act2ActIPCTimeout "0"
+      ExpressionSemanticCheckFlag "0"
+      TraceOption "0"
+      EnableCacheSharing "0"
+      RuntimeColumnPropagation "0"
+      RelStagesInJobStatus "-1"
+      WebServiceEnabled "0"
+      MFProcessMetaData "0"
+      MFProcessMetaDataXMLFileExchangeMethod "0"
+      IMSProgType "0"
+      CopyLibPrefix "ARDT"
+      RecordPerformanceResults "0"
+   END DSRECORD
+   BEGIN DSRECORD
+      Identifier "V0"
+      OLEType "CContainerView"
+      Readonly "0"
+      Name "Job"
+      NextID "1"
+      IsTopLevel "0"
+      StageList "V0S0|V0S3|V0S4|V0A6"
+      StageXPos "576|768|360|411"
+      StageYPos "216|216|216|49"
+      StageTypes "CTransformerStage|CSeqFileStage|CSeqFileStage|ID_PALETTEANNOTATION"
+      NextStageID "9"
+      SnapToGrid "1"
+      GridLines "0"
+      ZoomValue "100"
+      StageXSize "48|48|48|358"
+      StageYSize "48|48|48|72"
+      ContainerViewSizing "0000 0000 0690 0206 0000 0001 0222 0000"
+      StageNames "DS_JOBS_LKP|OUTPUT_JOBID_SEQ|INPUT_SEQ| "
+      StageTypeIDs "CTransformerStage|CSeqFileStage|CSeqFileStage| "
+      LinkNames "jobid| |input| "
+      LinkHasMetaDatas "True| |True| "
+      LinkTypes "1| |1| "
+      LinkNamePositionXs "666| |475| "
+      LinkNamePositionYs "239| |240| "
+      TargetStageIDs "V0S3| |V0S0| "
+      SourceStageEffectiveExecutionModes "0| |0| "
+      SourceStageRuntimeExecutionModes "0| |0| "
+      TargetStageEffectiveExecutionModes "0| |0| "
+      TargetStageRuntimeExecutionModes "0| |0| "
+      LinkIsSingleOperatorLookup "False| |False| "
+      LinkIsSortSequential "False| |False| "
+      LinkSortMode "0| |0| "
+      LinkPartColMode "0| |0| "
+      LinkSourcePinIDs "V0S0P1| |V0S4P1| "
+   END DSRECORD
+   BEGIN DSRECORD
+      Identifier "V0A6"
+      OLEType "CAnnotation"
+      Readonly "0"
+      Name "V0A6"
+      NextID "0"
+      AnnotationType "0"
+      AnnotationText =+=+=+=
+Job to find Job ID for a given Job
+
+This job uses UtilityHashLookup("DS_JOBS", JobName, 5) to find the job ID
+=+=+=+=
+      TextFont "MS Shell Dlg\\10\\0\\0\\0\\400\\0"
+      TextHorizontalJustification "1"
+      TextVerticalJustification "1"
+      TextColor "0"
+      BackgroundColor "8454016"
+      BackgroundTransparent "0"
+      BorderVisible "1"
+   END DSRECORD
+   BEGIN DSRECORD
+      Identifier "V0S0"
+      OLEType "CTransformerStage"
+      Readonly "0"
+      Name "DS_JOBS_LKP"
+      NextID "4"
+      InputPins "V0S0P2"
+      OutputPins "V0S0P1"
+      ValidationStatus "0"
+      StageType "CTransformerStage"
+      BlockSize "0"
+      StageVars "CStageVar"
+      BEGIN DSSUBRECORD
+         Name "JobID"
+         Expression "UtilityHashLookup(\"DS_JOBS\",input.JobName, 5)"
+         InitialValue "0"
+         SqlType "3"
+         ParsedExpression "UtilityHashLookup((\"DS_JOBS\"), (input.JobName), (5))"
+         SourceColumn "input.JobName"
+         Transform "\(1B)UtilityHashLookup"
+         Precision "0"
+         ColScale "0"
+         ExtendedPrecision "0"
+      END DSSUBRECORD
+      StageVarsMinimised "0"
+      LoopVarsMaximised "0"
+      MaxLoopIterations "0"
+   END DSRECORD
+   BEGIN DSRECORD
+      Identifier "V0S0P1"
+      OLEType "CTrxOutput"
+      Readonly "0"
+      Name "jobid"
+      Partner "V0S3|V0S3P1"
+      Constraint "JobID > 0"
+      Reject "0"
+      ErrorPin "0"
+      RowLimit "0"
+      ParsedConstraint "JobID > 0"
+      Columns "COutputColumn"
+      BEGIN DSSUBRECORD
+         Name "JobName"
+         SqlType "12"
+         Precision "100"
+         Scale "0"
+         Nullable "0"
+         KeyPosition "0"
+         DisplaySize "0"
+         Derivation "input.JobName"
+         Group "0"
+         ParsedDerivation "input.JobName"
+         SourceColumn "input.JobName"
+         SortKey "0"
+         SortType "0"
+         AllowCRLF "0"
+         LevelNo "0"
+         Occurs "0"
+         PadNulls "0"
+         SignOption "0"
+         SortingOrder "0"
+         ArrayHandling "0"
+         SyncIndicator "0"
+         PadChar ""
+         ExtendedPrecision "0"
+         TaggedSubrec "0"
+         OccursVarying "0"
+         PKeyIsCaseless "0"
+         SCDPurpose "0"
+      END DSSUBRECORD
+      BEGIN DSSUBRECORD
+         Name "JobID"
+         SqlType "12"
+         Precision "100"
+         Scale "0"
+         Nullable "0"
+         KeyPosition "0"
+         DisplaySize "0"
+         Derivation "JobID"
+         Group "0"
+         ParsedDerivation "JobID"
+         SortKey "0"
+         SortType "0"
+         AllowCRLF "0"
+         LevelNo "0"
+         Occurs "0"
+         PadNulls "0"
+         SignOption "0"
+         SortingOrder "0"
+         StageVars "JobID"
+         ArrayHandling "0"
+         SyncIndicator "0"
+         PadChar ""
+         ExtendedPrecision "0"
+         TaggedSubrec "0"
+         OccursVarying "0"
+         PKeyIsCaseless "0"
+         SCDPurpose "0"
+      END DSSUBRECORD
+      StageVars "JobID"
+      LeftTextPos "666"
+      TopTextPos "239"
+      LinkMinimised "0"
+   END DSRECORD
+   BEGIN DSRECORD
+      Identifier "V0S0P2"
+      OLEType "CTrxInput"
+      Readonly "0"
+      Name "input"
+      Partner "V0S4|V0S4P1"
+      LinkType "1"
+      MultiRow "0"
+      LinkMinimised "0"
+   END DSRECORD
+   BEGIN DSRECORD
+      Identifier "V0S3"
+      OLEType "CSeqFileStage"
+      Readonly "0"
+      Name "OUTPUT_JOBID_SEQ"
+      NextID "2"
+      InputPins "V0S3P1"
+      UnixFormat "1"
+      PipeStage "0"
+      UnicodeBOM "1"
+      UnicodeSwapped "1"
+      AllowColumnMapping "0"
+      WithFilter "0"
+      StageType "CSeqFileStage"
+   END DSRECORD
+   BEGIN DSRECORD
+      Identifier "V0S3P1"
+      OLEType "CSeqInput"
+      Readonly "0"
+      Name "jobid"
+      Partner "V0S0|V0S0P1"
+      FileName "#APPLDIR#dwscripts/ClearDS_RTLogRTStatus/input/ISD_Jobs_Listing_OUT.txt"
+      Delimiter ","
+      QuoteChar "000"
+      ColHeaders "0"
+      OmitNewLine "0"
+      Append "0"
+      Backup "0"
+      FixedWidth "0"
+      ColSpace "0"
+      EnforceMetaData "0"
+      Writetime "0"
+      WaitforReader "0"
+      Flushrow "0"
+      PadChar "#"
+   END DSRECORD
+   BEGIN DSRECORD
+      Identifier "V0S4"
+      OLEType "CSeqFileStage"
+      Readonly "0"
+      Name "INPUT_SEQ"
+      NextID "2"
+      OutputPins "V0S4P1"
+      UnixFormat "1"
+      PipeStage "0"
+      UnicodeBOM "1"
+      UnicodeSwapped "1"
+      AllowColumnMapping "0"
+      WithFilter "0"
+      StageType "CSeqFileStage"
+   END DSRECORD
+   BEGIN DSRECORD
+      Identifier "V0S4P1"
+      OLEType "CSeqOutput"
+      Readonly "0"
+      Name "input"
+      Partner "V0S0|V0S0P2"
+      FileName "#APPLDIR#dwscripts/ClearDS_RTLogRTStatus/input/ISD_Jobs_Listing_IN.txt"
+      ColDelim ","
+      QuoteChar "\""
+      ColHeaders "0"
+      FixedWidth "0"
+      ColSpace "0"
+      EnforceMetaData "0"
+      Readtimeout "0"
+      Columns "COutputColumn"
+      BEGIN DSSUBRECORD
+         Name "JobName"
+         SqlType "12"
+         Precision "100"
+         Scale "0"
+         Nullable "0"
+         KeyPosition "0"
+         DisplaySize "0"
+         Group "0"
+         SortKey "0"
+         SortType "0"
+         AllowCRLF "0"
+         LevelNo "0"
+         Occurs "0"
+         PadNulls "0"
+         SignOption "0"
+         SortingOrder "0"
+         ArrayHandling "0"
+         SyncIndicator "0"
+         PadChar ""
+         ExtendedPrecision "0"
+         TaggedSubrec "0"
+         OccursVarying "0"
+         PKeyIsCaseless "0"
+         SCDPurpose "0"
+      END DSSUBRECORD
+      Waitforwriter "0"
+      PadChar "#"
+      LeftTextPos "475"
+      TopTextPos "240"
+      SuppressTruncWarn "0"
+   END DSRECORD
+END DSJOB
+BEGIN DSEXECJOB
+   Identifier "ClearDS_RTLogRTStatus"
+   DateModified "1899-12-30"
+   TimeModified "00.00.01"
+   BEGIN DSRECORD
+      Identifier "ClearDS_RTLogRTStatus"
+      F1 "JOB"
+      F3 "8.7///55/C"
+      F4 "ClearDS_RTLogRTStatus.DS_JOBS_LKP"
+      F5 "ThisJob\VAPPLDIR"
+      F6 "ThisJob\VAPPLDIR"
+      F7 "ClearDS_RTLogRTStatus\V/opt/datastage/files/dev/warehouse/"
+      F9 "0\V0"
+      F10 "V0"
+      F18 "ClearDS_RTLogRTStatus\V/opt/datastage/files/dev/warehouse/"
+      F21 "1\V1"
+      F24 ",,,,"
+      F28 "\\Jobs\\WAREHOUSE/Utilities\\AUDIT_DATASTAGE_JOB_ID"
+      F29 "0"
+      F30 "0"
+      F31 "2015-05-20 19:38:53"
+      F32 "0"
+      F34 "\V\VLINUX\V0\V\V\V\V\V\V\V\V\V\V0"
+      F36 "entechlog-dev"
+      F37 "ENTECHLOG_DEV"
+      F38 "0"
+      F39 "ClearDS_RTLogRTStatus.OUTPUT_JOBID_SEQ\VClearDS_RTLogRTStatus.INPUT_SEQ"
+      F41 "0"
+   END DSRECORD
+   BEGIN DSRECORD
+      Identifier "ClearDS_RTLogRTStatus.DS_JOBS_LKP"
+      F1 "STAGE"
+      F2 "TRX"
+      F3 "8.7///55/C"
+      F4 "ClearDS_RTLogRTStatus"
+      F5 "DSD.StageRun"
+      F7 "JOB.1164699433.DT.1730682651.TRANS1"
+      F9 "ClearDS_RTLogRTStatus.INPUT_SEQ.input"
+      F10 "ClearDS_RTLogRTStatus.OUTPUT_JOBID_SEQ.jobid"
+      F12 "ClearDS_RTLogRTStatus.OUTPUT_JOBID_SEQ.jobid"
+      F15 "V0S0"
+      F16 "CTransformerStage"
+      F27 "1"
+      F28 "JobID"
+      F29 "1"
+      F31 "ClearDS_RTLogRTStatus.DS_JOBS_LKP"
+      F32 "-1.-1"
+   END DSRECORD
+   BEGIN DSRECORD
+      Identifier "ClearDS_RTLogRTStatus.INPUT_SEQ"
+      F1 "STAGE"
+      F2 "SEQ"
+      F3 "8.7///55/C"
+      F8 "0"
+      F9 "1"
+      F10 "1"
+      F11 "0"
+      F15 "V0S4"
+      F16 "CSeqFileStage"
+      F31 "ClearDS_RTLogRTStatus.INPUT_SEQ"
+      F32 "-1.-1"
+   END DSRECORD
+   BEGIN DSRECORD
+      Identifier "ClearDS_RTLogRTStatus.INPUT_SEQ.input"
+      F1 "OUTPIN"
+      F2 "SEQ"
+      F3 "8.7///55/C"
+      F4 "READ"
+      F5 "1"
+      F6 "2"
+      F10 "\(A)"
+      F11 ","
+      F13 "\""
+      F14 "0"
+      F16 "ClearDS_RTLogRTStatus.INPUT_SEQ"
+      F17 "DSD.SEQOpen"
+      F18 "$DS.SEQGETNEXT"
+      F20 "DSD.SEQClose"
+      F21 "JobName"
+      F22 "0"
+      F23 "99"
+      F25 "12"
+      F26 "100"
+      F27 "0"
+      F28 "0"
+      F32 "J\\1617\\V0S4P1\VJ\\1617\\V0S0P2"
+      F33 "#APPLDIR#dwscripts/ClearDS_RTLogRTStatus/input/ISD_Jobs_Listing_IN.txt"
+      F35 "0"
+      F39 "input"
+      F40 "0"
+      F43 "0"
+      F44 "0"
+      F47 "1"
+      F54 "0"
+      F55 "0"
+      F56 "0"
+      F57 "0"
+      F59 "#"
+      F60 "0"
+      F61 "0"
+      F62 "0"
+      F64 "0"
+      F67 "0"
+      F70 "0"
+      F71 "0"
+      F77 "input"
+   END DSRECORD
+   BEGIN DSRECORD
+      Identifier "ClearDS_RTLogRTStatus.OUTPUT_JOBID_SEQ"
+      F1 "STAGE"
+      F2 "SEQ"
+      F3 "8.7///55/C"
+      F8 "0"
+      F9 "1"
+      F10 "1"
+      F11 "0"
+      F15 "V0S3"
+      F16 "CSeqFileStage"
+      F31 "ClearDS_RTLogRTStatus.OUTPUT_JOBID_SEQ"
+      F32 "-1.-1"
+   END DSRECORD
+   BEGIN DSRECORD
+      Identifier "ClearDS_RTLogRTStatus.OUTPUT_JOBID_SEQ.jobid"
+      F1 "INPIN"
+      F2 "SEQ"
+      F3 "8.7///55/C"
+      F4 "WRITE"
+      F5 "2"
+      F6 "2\V1"
+      F7 "0"
+      F10 "\(A)"
+      F11 ","
+      F14 "0"
+      F16 "ClearDS_RTLogRTStatus.OUTPUT_JOBID_SEQ"
+      F17 "DSD.SEQOpen"
+      F19 "$DS.SEQPUT"
+      F20 "DSD.SEQClose"
+      F21 "JobName\VJobID"
+      F22 "0\V0"
+      F23 "99\V99"
+      F24 "\V"
+      F25 "12\V12"
+      F26 "100\V100"
+      F27 "0\V0"
+      F28 "0\V0"
+      F32 "J\\1617\\V0S0P1\VJ\\1617\\V0S3P1"
+      F33 "#APPLDIR#dwscripts/ClearDS_RTLogRTStatus/input/ISD_Jobs_Listing_OUT.txt"
+      F34 "2"
+      F35 "0"
+      F36 "0"
+      F37 "0"
+      F39 "jobid"
+      F40 "0\V0"
+      F43 "0\V0"
+      F44 "0\V0"
+      F47 "2"
+      F54 "0"
+      F55 "0"
+      F56 "0"
+      F57 "0"
+      F58 "\V"
+      F59 "#\V#"
+      F60 "0\V0"
+      F61 "0\V0"
+      F64 "0\V0"
+      F67 "0\V0"
+      F70 "0\V0"
+      F71 "0\V0"
+      F77 "jobid"
+   END DSRECORD
+   BEGIN DSBPSOURCE
+      Identifier "JOB.1164699433.DT.1730682651.TRANS1"
+      TERMINATOR =+=+=+=
+* Tokens were replaced below as follows:
+* JobParam%%1 <= ThisJob
+* JobParam%%2 <= APPLDIR
+* V0S0.Stagevar%%1 <= JobID
+* Pin%%V0S0P2.Column%%1 <= input.JobName
+* GET.Pin%%V0S0P2 <= GET.input
+* Pin%%V0S0P2.REJECTEDCODE <= input.REJECTEDCODE
+* Pin%%V0S0P1.Column%%1 <= jobid.JobName
+* Pin%%V0S0P1.Column%%2 <= jobid.JobID
+* PUT.Pin%%V0S0P1 <= PUT.jobid
+* Pin%%V0S0P1.REJECTED <= jobid.REJECTED
+* Pin%%V0S0P1.REJECTEDCODE <= jobid.REJECTEDCODE
+*
+* Subroutine for active stage ClearDS_RTLogRTStatus.DS_JOBS_LKP generated at 19:38:53 20 MAY 2015
+*
+SUBROUTINE DSTransformerStage(HANDLES,ERROR)
+
+$INCLUDE DSINCLUDE DSD_RTCONFIG.H
+$INCLUDE DSINCLUDE DSD_STAGE.H
+$INCLUDE DSINCLUDE DSD_BCI.H
+
+$DEFINE JobParam%%1 STAGECOM.JOB.STATUS<7,1>
+$DEFINE JobParam%%2 STAGECOM.JOB.STATUS<7,2>
+
+$INCLUDE DSINCLUDE JOBCONTROL.H
+DEFFUN DSRLoadString(Num,Text,Args) CALLING '*DataStage*DSR_LOADSTRING'
+$DEFINE V0S0.Stagevar%%1 STAGECOM.ARR(1)
+$DEFINE Pin%%V0S0P2.Column%%1 STAGECOM.ARR(2)
+$DEFINE GET.Pin%%V0S0P2 CALL $DS.SEQGETNEXT(1,Pin%%V0S0P2.REJECTEDCODE)
+IF STAGECOM.TRACE.STATS THEN CALL $PERF.NAME(-2,'StageVars.Derivation')
+IF STAGECOM.TRACE.STATS THEN CALL $PERF.NAME(-3,'jobid.Derivation')
+$DEFINE Pin%%V0S0P1.Column%%1 STAGECOM.ARR(2)
+$DEFINE Pin%%V0S0P1.Column%%2 STAGECOM.ARR(1)
+$DEFINE PUT.Pin%%V0S0P1 CALL $DS.SEQPUT(2, Pin%%V0S0P1.REJECTEDCODE)
+DEFFUN UtilityHashLookup( ARG1, ARG2, ARG3) CALLING "DSX.UTILITYHASHLOOKUP"
+
+UPDATE.COUNT = STAGECOM.RATE
+
+* Stage Variable initialization
+IF NOT(STAGECOM.STAGE<STAGE.VAR.INITED,1>) THEN
+	STAGECOM.STAGE<STAGE.VAR.INITED,1> = @TRUE
+	V0S0.Stagevar%%1 = 0
+END
+
+
+LOOP
+	REJECTED = @TRUE
+	* Get next row from primary input pin input
+	STAGECOM.PINNO = 1
+	GET.Pin%%V0S0P2
+	ERROR = Pin%%V0S0P2.REJECTEDCODE
+WHILE NOT(ERROR)
+	* Stage variable evaluation
+IF STAGECOM.TRACE.STATS THEN CALL $PERF.BEGIN(-2)
+	V0S0.Stagevar%%1 = UtilityHashLookup(("DS_JOBS"), (Pin%%V0S0P2.Column%%1), (5))
+IF STAGECOM.TRACE.STATS THEN CALL $PERF.END(-2)
+
+	STAGECOM.PINNO = 2
+	    IF STAGECOM.TRACE.STATS THEN CALL $PERF.BEGIN(-3)
+	    IF V0S0.Stagevar%%1 > 0 THEN
+		* Column derivation code for pin jobid
+		Pin%%V0S0P1.REJECTED = @FALSE
+	    IF STAGECOM.TRACE.STATS THEN CALL $PERF.END(-3)
+
+		PUT.Pin%%V0S0P1
+		IF NOT(Pin%%V0S0P1.REJECTEDCODE) THEN
+		    REJECTED = @FALSE
+		END ELSE 
+		    Pin%%V0S0P1.REJECTED = @TRUE
+		END 
+	    END
+	    ELSE
+		Pin%%V0S0P1.REJECTED = @TRUE
+		Pin%%V0S0P1.REJECTEDCODE = 0
+	    END
+
+
+  UPDATE.COUNT -= 1
+  IF UPDATE.COUNT LE 0 THEN CALL DSD.Update(HANDLES);UPDATE.COUNT = STAGECOM.RATE
+REPEAT
+RETURN
+END
+
+=+=+=+=
+   END DSBPSOURCE
+   BEGIN DSBPBINARY
+      Identifier "JOB.1164699433.DT.1730682651.TRANS1"
+      B1 "E1DA00870500010046000200000002001E0031008E007A005C001E00FF7F0000CC02000053000000"
+      B41 "2D0000009F000000EB2B000020030000300300008D040000960C0000F00C00000000000000000000"
+      B81 "0800000058004B005C005D0058004C005C005D0058004D005E005D0058004E005C005D0058004F00"
+      B121 "5C005D00580050005C005D0002015C005F0060005800510060005D00580052005C005D0058005300"
+      B161 "5C005D00580054005C005D00580055005C005D00580056005C005D00580057005C005D0058005800"
+      B201 "5E005D00580059005E005D0058005A005C005D0058005B005C005D0010004A006100600006016000"
+      B241 "62006300DE026300BE000000F80065003300F800660034001E00640002003300340010004A006100"
+      B281 "63000601630062006700DE0267000000EE000000F80068003500F800690036001E00640002003500"
+      B321 "3600E6004C0062005D003A00600049006A005D00620067000E0167006B00DE026B0000002C010000"
+      B361 "640049006A005D0062005D004900FC0062005D005D004D00F8005D003B00FC005D0062005D004B00"
+      B401 "F8005D003C001E006C0002003C003D00F8003D0048000C010E0148006B00DE026B000000C8020000"
+      B441 "10004A0061006B0006016B0062006D00DE026D008A010000F80065003E001E006E0001003E00F800"
+      B481 "70003F00F8007100400096016F0003003F0000004D005F005D0040006D00FC006D005D005D004D00"
+      B521 "10004A0061006D0006016D0062007200DE027200DA010000F800650041001E00730001004100FC00"
+      B561 "5F0062005D004B0010004A00610072000601720062007400DE0274000A020000F800680042001E00"
+      B601 "6E0001004200E6004D005D005D007400A600740062007500DE02750088020000F800620043001000"
+      B641 "4A00610076000601760062007700DE027700000052020000F800680044001E00730001004400F800"
+      B681 "5F0045001E0078000200450046000E0146007700DE0277007C020000F80062003B00C20082020000"
+      B721 "F8005D004300C20094020000F8005D004300F8006200460094013A005D003A00CE003A0062007500"
+      B761 "DE027500BE0200001E00790001004700E6004C0062005D003A000C01C20000002C0100005C015C01"
+      B801 "01000000140000001400000013000000005354414745434F4D00FD01FE01FC02FF01FB0042434943"
+      B841 "4F4D00FD0EFE0024504552462E4E414D455374616765566172732E44657269766174696F6E6A6F62"
+      B881 "69642E44657269766174696F6E2444532E5345514745544E45585424504552462E424547494E4453"
+      B921 "582E5554494C495459484153484C4F4F4B555044535F4A4F425324504552462E454E442444532E53"
+      B961 "45515055544453442E55706461746503000400000301000000030020000003020000000500000000"
+      B1001 "031000000003000000000501000000040A0000001F00000003FEFFFFFF0114000000290000000502"
+      B1041 "00000003FDFFFFFF01100000003D000000031E0000000503000000040E0000004D00000005040000"
+      B1081 "00040B0000005B00000004150000006600000001070000007B000000030500000005050000000409"
+      B1121 "000000820000000506000000050700000005080000000509000000040A0000008B000000040A0000"
+      B1161 "00950000000000000000000000000000000800000001000100000000000F00000002000100000000"
+      B1201 "00190000000300010000000000240000000400010000000000300000000500010000000000350000"
+      B1241 "0006000100000000003A000000070001000000000045000000080001000000000049000000090001"
+      B1281 "0000000000510000000A00010000000000590000000B00010000000000610000000C000100000000"
+      B1321 "006B0000000D00010000000000740000000E000100000000007E0000000F00010000000000870000"
+      B1361 "0010000100000000008F0000001100010000000000990000001200010000000000A9000000130001"
+      B1401 "0000000000B30000001400010000000000BD0000001500010000000000C500000016000100000000"
+      B1441 "00CF0000001700010000000000D90000001800010000000000E10000001900010000000000EE0000"
+      B1481 "001A00010000000000FB0000001B00010000000000050100001C00010000000000110100001D0001"
+      B1521 "00000000001F0100001E000100000000002B0100001F000100000000003301000020000100000000"
+      B1561 "003B01000021000100000000004601000022000100000000004C0100002300010000000000560100"
+      B1601 "0024000100000000006101000025000100000000006C010000260001000000000075010000270001"
+      B1641 "00000000007A01000028000100000000008401000029000100000000008A0100002A000100000000"
+      B1681 "00970100002B000100000000009E0100002C00010000000000A60100002D00010000000000AF0100"
+      B1721 "002E00010000000000B70100002F00010000000000BF0100003000010000000000C3010000310001"
+      B1761 "0000000000C80100003200010000000000CD0100003300010000000000D401000034000100000000"
+      B1801 "00DB0100003500010000000000E20100003600010000000000E90100003700010000000000EE0100"
+      B1841 "003800010000000000F30100003900010000000000F80100003A00010000000000050200003B0001"
+      B1881 "00000000000E0200003C00010000000000150200003D000100000000002E0200003E000100000000"
+      B1921 "00350200003F000100000000003C02000040000100000000004302000041000100000000004A0200"
+      B1961 "0042000100000000005102000043000100000000006602000044000100000000006D020000450001"
+      B2001 "00000000007402000046000100000000008D02000047000400000000009502000048000400000000"
+      B2041 "009B0200004900020000000000AA0200004A00020000000000BD0200004B00070000000000CA0200"
+      B2081 "004C00070000000000DC0200004D00070000000000E90200004E00070000000000F40200004F0007"
+      B2121 "00000000000003000050000700000000001103000051000700000000001E03000052000700000000"
+      B2161 "002C03000053000700000000003A0300005400070000000000490300005500070000000000590300"
+      B2201 "0056000700000000006903000057000700000000007C030000580007000000000087030000590007"
+      B2241 "0000000000960300005A00070000000000A50300005B00070000000000244D41545249580048414E"
+      B2281 "444C450050524F502E4E414D4500504152414D2E4E414D45004F424A4543542E4E414D4500484442"
+      B2321 "4300494E464F0053544147452E4E414D45004B4559004A6F624E616D65004572724D6F6465005274"
+      B2361 "6E4E616D65004A6F6248616E646C6500496E666F547970650053746167654E616D65004C696E6B4E"
+      B2401 "616D65004576656E7449640052756E4E756D626572004576656E745479706546696C746572004576"
+      B2441 "656E745479706500537461727454696D6500456E6454696D65004D61784E756D6265720050617261"
+      B2481 "6D4E616D65005661724E616D650043757374496E666F4E616D65004576656E744D65737361676500"
+      B2521 "4D7367537472696E67005265706F72744C6576656C004C696E65536570617261746F72004D736754"
+      B2561 "656D706C617465004172674C6973740052756E4D6F646500506172616D65746572730056616C7565"
+      B2601 "004C696D697454797065004C696D697456616C756500506172616D56616C75650056617256616C75"
+      B2641 "6500436F6465004572726F72436F6465004A6F6249440054726163654F7074696F6E7300706F7274"
+      B2681 "4E6F0054696D656F757400537562724E616D650053756272417267004F7074696F6E73004E756D00"
+      B2721 "546578740041726773005F5430303030005F5430303031005F5430303032005F5430303033004152"
+      B2761 "473100415247320041524733005550444154452E434F554E540052454A4543544544005F54303030"
+      B2801 "340050696E25255630533050322E52454A4543544544434F4445005F5430303035005F5430303036"
+      B2841 "005F5430303037005F5430303038005F54303030390050696E25255630533050312E52454A454354"
+      B2881 "4544005F5430303130005F54303031310050696E25255630533050312E52454A4543544544434F44"
+      B2921 "450048414E444C4553004552524F52005354414745434F4D2E5354414745005354414745434F4D2E"
+      B2961 "54524143454D4F4445005354414745434F4D2E50494E005354414745434F4D2E4E554D2E524F5753"
+      B3001 "005354414745434F4D2E41525200424349434F4D2E44534E00424349434F4D2E4844424300424349"
+      B3041 "434F4D2E4E554D2E53544D545300424349434F4D2E4853544D5400424349434F4D2E5458524F5753"
+      B3081 "00424349434F4D2E545853495A4500424349434F4D2E5052495641544500424349434F4D2E415252"
+      B3121 "2E524F575300424349434F4D2E4152522E53495A4500424349434F4D2E4E4C532E4D41504E414D45"
+      B3161 "00424349434F4D2E41525200424349434F4D2E4D41502E41525200424349434F4D2E545853544154"
+      B3201 "4500424349434F4D2E444F2E52455052455041524500EDFF00001800F6FF78002E00FAFF3000FDFF"
+      B3241 "0A001C000E00FBFF0A00FEFF06000A0010000600FEFF120026002A00FEFF26000A002600FEFF1A00"
+      B3281 "0600FEFF280010000E00FEFF0C00FCFF0C000600FCFF0600080022000A0002002F6F70742F49424D"
+      B3321 "2F496E666F726D6174696F6E5365727665722F5365727665722F50726F6A656374732F4953445F44"
+      B3361 "45562F52545F4250313631372F4A4F422E313136343639393433332E44542E313733303638323635"
+      B3401 "312E5452414E53310000"
+   END DSBPBINARY
+END DSEXECJOB
